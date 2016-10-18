@@ -2,11 +2,46 @@
 
 <html lang="en">
 		
-		<head>	
+	<head>	
 		<meta charset="	UTF-8">
 		<title>	Document</title>
-		</head>
+	</head>
 
-		<body>	
-				<h1>Hello World</h1>
-		</body> 
+	<body>	
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.5.0/socket.io.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.min.js"></script>
+
+		<div  id="chat">
+    <input v-model="message"> 
+    <button v-on:click="send">Send</button>
+</div>
+			
+	
+		<script>
+			var socket	= io();
+			console.log("a");
+			new Vue({
+				el: '#chat',
+
+				data: {
+					message: ''
+				},
+
+
+				methods: {
+					send: function(e)
+					{
+						socket.emit('chat.message',this.message);
+						
+					}
+				}
+			})
+
+	
+		</script>
+	</body> 
+
+</html>
