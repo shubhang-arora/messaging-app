@@ -7,9 +7,7 @@ app.get('/', function(req, res){
 });
 
 io.on('connection',function(socket){
-	socket.on('user',function(user){
-		io.emit('user',user);
-	});
+	io.emit('user','connection');
 	socket.on('disconnect', function(){
 		io.emit('user','disconnected');
 	});
